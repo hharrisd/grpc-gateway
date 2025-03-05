@@ -1,0 +1,16 @@
+{
+    "homepage": "https://github.com/grpc-ecosystem/grpc-gateway",
+    "maintainers": [
+      {
+        // <-- And this
+        "name": "INSERT_YOUR_NAME",
+        "email": "INSERT_YOUR_EMAIL",
+        "github": "INSERT_YOUR_GITHUB_USERNAME"
+      }
+    ],
+    "repository": [
+      "github:grpc-ecosystem/grpc-gateway" 
+    ],
+    "versions": [],
+    "yanked_versions": {}
+  }
