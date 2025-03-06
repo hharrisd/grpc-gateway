@@ -2,10 +2,9 @@
     "homepage": "https://github.com/grpc-ecosystem/grpc-gateway",
     "maintainers": [
       {
-        // <-- THIS MUST BE FILLED WITH GRPC-GATEWAY MAINTAINERS DATA
-        "name": "INSERT_YOUR_NAME",
-        "email": "INSERT_YOUR_EMAIL",
-        "github": "INSERT_YOUR_GITHUB_USERNAME"
+        "name": "Johan Brandhorst-Satzkorn",
+        "email": "johan.brandhorst@gmail.com",
+        "github": "johanbrandhorst"
       }
     ],
     "repository": [
