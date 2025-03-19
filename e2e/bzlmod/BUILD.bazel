@@ -1,0 +1,38 @@
+load("@bazel_gazelle//:def.bzl", "gazelle")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+# gazelle:go_grpc_compilers @grpc_ecosystem_grpc_gateway//:go_apiv2, @grpc_ecosystem_grpc_gateway//:go_grpc, @grpc_ecosystem_grpc_gateway//protoc-gen-grpc-gateway:go_gen_grpc_gateway
+
+gazelle(name = "gazelle")
+
+proto_library(
+    name = "bzlmod_proto",
+    srcs = ["helloworld.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+go_proto_library(
+    name = "bzlmod_go_proto",
+    compilers = [
+        "@grpc_ecosystem_grpc_gateway//:go_apiv2",
+        "@grpc_ecosystem_grpc_gateway//:go_grpc",
+        "@grpc_ecosystem_grpc_gateway//protoc-gen-grpc-gateway:go_gen_grpc_gateway",
+    ],
+    importpath = "github.com/grpc-ecosystem/grpc-gateway/v2/e2e/bzlmod",
+    proto = ":bzlmod_proto",
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:annotations_proto"],
+)
+
+go_library(
+    name = "bzlmod",
+    embed = [":bzlmod_go_proto"],
+    importpath = "github.com/grpc-ecosystem/grpc-gateway/v2/e2e/bzlmod",
+    visibility = ["//visibility:public"],
+)
