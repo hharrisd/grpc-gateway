@@ -4,6 +4,8 @@ load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 
 # gazelle:go_grpc_compilers @grpc_ecosystem_grpc_gateway//:go_apiv2, @grpc_ecosystem_grpc_gateway//:go_grpc, @grpc_ecosystem_grpc_gateway//protoc-gen-grpc-gateway:go_gen_grpc_gateway
+# gazelle:resolve proto google/api/annotations.proto @googleapis//google/api:annotations_proto
+# gazelle:resolve proto go google/api/annotations.proto @org_golang_google_genproto_googleapis_api//annotations
 
 gazelle(name = "gazelle")
 
@@ -11,6 +13,7 @@ proto_library(
     name = "bzlmod_proto",
     srcs = ["calculator.proto"],
     visibility = ["//visibility:public"],
+    deps = ["@googleapis//google/api:annotations_proto"],
 )
 
 go_proto_library(
@@ -23,6 +26,7 @@ go_proto_library(
     importpath = "github.com/grpc-ecosystem/grpc-gateway/e2e/bzlmod",
     proto = ":bzlmod_proto",
     visibility = ["//visibility:public"],
+    deps = ["@org_golang_google_genproto_googleapis_api//annotations"],
 )
 
 go_library(
