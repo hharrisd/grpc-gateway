@@ -1,0 +1,12 @@
+bcr_test_module:
+  module_path: "e2e/bzlmod/MODULE.bazel"
+  matrix:
+    platform: ["debian10", "macos", "ubuntu2004", "windows"]
+    bazel: [6.x, 7.x, 8.x]
+  tasks:
+    run_tests:
+      name: "Build e2e module"
+      platform: ${{ platform }}
+      bazel: ${{ bazel }}
+      build_targets:
+        - "//..."

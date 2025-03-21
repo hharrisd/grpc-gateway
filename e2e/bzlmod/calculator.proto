@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package grpc.gateway.e2e.bzlmod;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/grpc-ecosystem/grpc-gateway/e2e/bzlmod";
+
+message SumRequest {
+  int32 first_number = 1;
+  int32 second_number = 2;
+}
+  
+message SumResponse {
+  int32 result = 1;
+}
+
+service CalculatorService {
+  rpc Sum(SumRequest) returns (SumResponse) {  
+    option (google.api.http) = {  
+      get: "/sum/{first_number}/{second_number}"  
+    };  
+  } 
+}
